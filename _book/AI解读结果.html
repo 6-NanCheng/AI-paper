@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Introduction – AI给予的文献自动化管理系统</title>
+<title>2&nbsp; 基本信息提取 – AI给予的文献自动化管理系统</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -50,8 +30,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./AI-Zetora.html" rel="next">
-<link href="./index.html" rel="prev">
+<link href="./AI-Zetora.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -101,7 +80,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./AI解读结果.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">AI解读报告</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -134,20 +113,14 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./AI-Zetora.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">操作步示例</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">操作示例</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./AI解读结果.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">基本信息提取</span></span></a>
+  <a href="./AI解读结果.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">AI解读报告</span></span></a>
   </div>
 </li>
     </ul>
@@ -155,15 +128,27 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#研究背景" id="toc-研究背景" class="nav-link active" data-scroll-target="#研究背景"><span class="header-section-number">2.0.1</span> 研究背景</a></li>
+  <li><a href="#研究结论" id="toc-研究结论" class="nav-link" data-scroll-target="#研究结论"><span class="header-section-number">2.0.2</span> 研究结论</a></li>
+  <li><a href="#核心创新点" id="toc-核心创新点" class="nav-link" data-scroll-target="#核心创新点"><span class="header-section-number">2.0.3</span> 核心创新点</a></li>
+  <li><a href="#实验设计" id="toc-实验设计" class="nav-link" data-scroll-target="#实验设计"><span class="header-section-number">2.0.4</span> 实验设计</a></li>
+  <li><a href="#讨论" id="toc-讨论" class="nav-link" data-scroll-target="#讨论"><span class="header-section-number">2.0.5</span> 讨论</a></li>
+  <li><a href="#产业转化可行性" id="toc-产业转化可行性" class="nav-link" data-scroll-target="#产业转化可行性"><span class="header-section-number">2.0.6</span> 产业转化可行性</a></li>
+  <li><a href="#结论" id="toc-结论" class="nav-link" data-scroll-target="#结论"><span class="header-section-number">2.0.7</span> 结论</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">基本信息提取</span></h1>
 </div>
 
 
@@ -180,15 +165,92 @@ div.csl-indent {
 </header>
 
 
-<p>This is a book created from markdown and executable code.</p>
-<p>See <span class="citation" data-cites="knuth84">Knuth (<a href="#ref-knuth84" role="doc-biblioref">1984</a>)</span> for additional discussion of literate programming.</p>
+<p>AI解读报告</p>
+<p>文章标题：<br>
+MicroDIG: estimating directed interactions in large-scale microbiome longitudinal data based on self-supervised learning</p>
+<p>作者：<br>
+喻姚洋1,2†, 章文浩1†, 孙丰珠3, 王颖1,2,4∗</p>
+<p>通讯作者单位：<br>
+厦门大学自动化系，厦门市 361101<br>
+厦门大学国家健康医疗大数据研究院，厦门市 361101<br>
+Department of Biological Sciences, University of Southern California, Los Angeles 90089<br>
+厦门市大数据智能分析与决策重点实验室，厦门市 361101</p>
+<p>发表年份：<br>
+2024</p>
+<p>期刊名称：<br>
+SCIENTIA SINICA Mathematica（《中国科学：数学》）</p>
+<hr>
+<section id="研究背景" class="level3" data-number="2.0.1">
+<h3 data-number="2.0.1" class="anchored" data-anchor-id="研究背景"><span class="header-section-number">2.0.1</span> 研究背景</h3>
+<p>微生物群落内的物种通过复杂的作用关系互相影响、相互依存，维持动态平衡。探索微生物群落的物种作用，对理解群落功能和机理十分重要。传统方法如湿实验培养微生物和基于相关性统计的方法（如 Pearson 和 Spearman）存在诸多限制，难以有效估计物种间的有向作用关系。本研究旨在开发一种基于自监督学习的框架 MicroDIG，利用微生物群落的纵向时序物种丰度数据，估计并校验大规模微生物群落内物种间的有向作用关系。</p>
+<hr>
+</section>
+<section id="研究结论" class="level3" data-number="2.0.2">
+<h3 data-number="2.0.2" class="anchored" data-anchor-id="研究结论"><span class="header-section-number">2.0.2</span> 研究结论</h3>
+<p>文章的核心发现是 MicroDIG 在估计微生物群落物种间的有向作用关系方面表现出色，优于五类基准方法。具体表现为：</p>
+<ul>
+<li><strong>推断精度</strong>：MicroDIG 的推断精度显著高于其他方法，尤其在大规模微生物群落中表现优异。</li>
+<li><strong>假阳性率</strong>：MicroDIG 有效降低了估计结果的假阳性率，准确识别物种间的作用方向。</li>
+<li><strong>适用性</strong>：MicroDIG 适用于各种群落规模，特别是传统方法难以处理的大规模群落。</li>
+<li><strong>可解释性和可扩展性</strong>：MicroDIG 模型具有清晰的可解释性和灵活的可扩展性，可以应用于复杂的真实场景中。</li>
+</ul>
+<hr>
+</section>
+<section id="核心创新点" class="level3" data-number="2.0.3">
+<h3 data-number="2.0.3" class="anchored" data-anchor-id="核心创新点"><span class="header-section-number">2.0.3</span> 核心创新点</h3>
+<ul>
+<li><strong>自监督学习框架</strong>：MicroDIG 提出了基于自监督学习的框架，无需标准答案的训练数据，解决了微生物时序丰度数据不足和作用关系标签缺失的问题。</li>
+<li><strong>GLV 方程与神经网络结合</strong>：将 Generalized Lotka-Volterra (GLV) 方程的数学机理与神经网络相结合，实现了对物种间有向作用关系的估计。</li>
+<li><strong>有效性校验</strong>：设计了严格的统计校验策略，确保估计结果的可靠性和高置信度。</li>
+<li><strong>灵活性和可扩展性</strong>：MicroDIG 框架内置的自编码器可以根据使用场景灵活替换为其他网络模型（如 GCN、Transformer 或 LSTM），提升了模型的适应性和应用范围。</li>
+</ul>
+<hr>
+</section>
+<section id="实验设计" class="level3" data-number="2.0.4">
+<h3 data-number="2.0.4" class="anchored" data-anchor-id="实验设计"><span class="header-section-number">2.0.4</span> 实验设计</h3>
+<ul>
+<li><p><strong>样品来源</strong>：<br>
+使用了多角度多层次的仿真数据及人类肠道微生物群落的真实数据。</p></li>
+<li><p><strong>研究方法</strong>：</p>
+<ol type="1">
+<li><strong>自监督数据增强</strong>：基于 GLV 方程生成大量自带有向作用关系标签的训练数据。</li>
+<li><strong>有向作用关系估计</strong>：通过自编码器神经网络学习物种间的有向作用强度。</li>
+<li><strong>有效性校验</strong>：通过仿真生成估计值为真/假时的两类 p 值分布，基于极大似然估计校验估计值的真/假。</li>
+</ol></li>
+<li><p><strong>数据来源与采集方式</strong>：</p>
+<ol type="1">
+<li><strong>仿真数据</strong>：使用第三方工具 miaSim 生成不同规模和作用模式的微生物群落丰度数据。</li>
+<li><strong>真实数据</strong>：使用健康女性受试者在六个月内对肠道（粪便）进行取样测序得到的共计 131 个时间点的肠道微生物组时序丰度数据。</li>
+</ol></li>
+</ul>
+<hr>
+</section>
+<section id="讨论" class="level3" data-number="2.0.5">
+<h3 data-number="2.0.5" class="anchored" data-anchor-id="讨论"><span class="header-section-number">2.0.5</span> 讨论</h3>
+<p>作者详细讨论了 MicroDIG 的结果及其对微生物群落研究领域的影响：</p>
+<ul>
+<li><strong>优势</strong>：MicroDIG 在估计物种间有向作用关系方面表现出色，特别是在大规模群落中，其性能优于现有方法。</li>
+<li><strong>局限性</strong>：目前 MicroDIG 仅限于两个物种间的有向作用关系建模分析，无法处理更复杂的多物种共同作用关系。</li>
+<li><strong>未来研究方向</strong>：作者建议在未来的研究中，可以考虑引入更复杂的网络结构（如图网络）和外部因素（如宿主健康状态、环境变化等），以提高模型的预测精度和适用性。</li>
+</ul>
+<hr>
+</section>
+<section id="产业转化可行性" class="level3" data-number="2.0.6">
+<h3 data-number="2.0.6" class="anchored" data-anchor-id="产业转化可行性"><span class="header-section-number">2.0.6</span> 产业转化可行性</h3>
+<p>MicroDIG 在产业转化方面具有广阔的前景。其自监督学习框架和 GLV 方程结合的方法可以应用于多个领域，如：</p>
+<ul>
+<li><strong>医疗健康</strong>：用于分析肠道微生物组与疾病的关系，开发个性化医疗方案。</li>
+<li><strong>生态学</strong>：研究生态系统中微生物群落的动态变化，指导环境保护和生态修复。</li>
+<li><strong>农业</strong>：优化作物微生物组，提高农作物产量和抗病能力。</li>
+</ul>
+<hr>
+</section>
+<section id="结论" class="level3" data-number="2.0.7">
+<h3 data-number="2.0.7" class="anchored" data-anchor-id="结论"><span class="header-section-number">2.0.7</span> 结论</h3>
+<p>MicroDIG 成功开发了一种基于自监督学习的框架，能够准确估计和校验大规模微生物群落内物种间的有向作用关系，为微生物群落研究提供了新的工具和方法，具有重要的理论和应用价值。</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
-<div id="ref-knuth84" class="csl-entry" role="listitem">
-Knuth, Donald E. 1984. <span>“Literate Programming.”</span> <em>Comput. J.</em> 27 (2): 97–111. <a href="https://doi.org/10.1093/comjnl/27.2.97">https://doi.org/10.1093/comjnl/27.2.97</a>.
-</div>
-</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -610,14 +672,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./index.html" class="pagination-link" aria-label="前言">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">前言</span>
+      <a href="./AI-Zetora.html" class="pagination-link" aria-label="操作示例">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">操作示例</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./AI-Zetora.html" class="pagination-link" aria-label="操作步示例">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">操作步示例</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

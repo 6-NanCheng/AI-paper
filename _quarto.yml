@@ -2,14 +2,13 @@ project:
   type: book
 
 book:
-  title: "AI"
-  author: "Norah Jones"
+  title: "AI给予的文献自动化管理系统"
+  author: "张睿、兰聪、黄俊豪"
   date: "2025/3/21"
   chapters:
     - index.qmd
-    - intro.qmd
-    - zetora.ipynb
-
+    - AI-Zetora.ipynb
+    - AI解读结果.md
 bibliography: references.bib
 
 format:
