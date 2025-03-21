@@ -2,13 +2,14 @@ project:
   type: book
 
 book:
-  title: "AI给予的文献自动化管理系统"
-  author: "张睿、兰聪、黄俊豪"
+  title: "AI驱动Zotero智慧文献集成平台"
+  author: "文探007：张睿、兰聪、黄俊豪"
   date: "2025/3/21"
   chapters:
     - index.qmd
-    - AI-Zetora.ipynb
-    - AI解读结果.md
+    - AI-Zotero.ipynb
+    - file-fe-fQhUAzZa0hHekgRXwxPZIAjx.md
+    - env.md
 bibliography: references.bib
 
 format:
