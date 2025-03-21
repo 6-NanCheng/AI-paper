@@ -1,0 +1,52 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "AI",
+    "section": "",
+    "text": "Preface\nThis is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "zetora.html",
+    "href": "zetora.html",
+    "title": "2  第一步：使用Qwen检索相关文献",
+    "section": "",
+    "text": "2.1 第二步：将检索到的文献上传到Zetro进行文献管理\nimport os\nimport json\nimport yaml\nimport requests\n\n# 请在此处填写你的 Zotero 用户 ID 和 API Key\n\nUSER_ID = \"11510297\"\nAPI_KEY = \"Gvq4FIgC0J6eggLUigAn2E5a\"\n\n# 构造用于上传文献的 Zotero API URL\n# 新建项时应 POST 到 /users/{user_id}/items 接口\nZOTERO_UPLOAD_URL = f\"https://api.zotero.org/users/{USER_ID}/items\"\n\n# ---------------------------\n# 函数：load_filtered_items\n# 作用：从 YAML 文件中读取第一步筛选好的文献信息\n# ---------------------------\ndef load_filtered_items(filename=\"filtered_items.yaml\"):\n    try:\n        with open(filename, \"r\", encoding=\"utf-8\") as f:\n            items = yaml.safe_load(f)\n        print(f\"成功读取 {len(items)} 篇筛选后的文献。\")\n        return items\n    except Exception as e:\n        print(f\"读取文件 {filename} 时出错：\", e)\n        return []\n\n# ---------------------------\n# 函数：convert_to_zotero_format\n# 作用：转换单个文献的信息为符合 Zotero API 要求的数据格式\n#\n# 示例中假定每篇文献包含 \"title\", \"abstract\", \"authors\", \"date\", \"DOI\" 字段，\n# 转换为 Zotero 项（如期刊论文）的格式。你可能需要补充更多必需字段。\n# ---------------------------\ndef convert_to_zotero_format(item):\n    # 默认转换为期刊论文；实际上传时请确保数据包含 Zotero 要求的所有必要字段。\n    zotero_item = {\n        \"itemType\": \"journalArticle\",\n        \"title\": item.get(\"title\", \"无标题\"),\n        \"abstractNote\": item.get(\"abstract\", \"\"),\n        \"creators\": [],\n        \"date\": str(item.get(\"date\", \"\")),\n        \"DOI\": item.get(\"DOI\", \"\")\n    }\n    # 假设 \"authors\" 字段为一个列表，每个作者为字典，包含 \"name\" 或 \"firstName\"/\"lastName\" 信息\n    for author in item.get(\"authors\", []):\n        # 如果有单独的 firstName 与 lastName\n        if \"firstName\" in author and \"lastName\" in author:\n            creator = {\n                \"creatorType\": \"author\",\n                \"firstName\": author[\"firstName\"],\n                \"lastName\": author[\"lastName\"]\n            }\n        else:\n            # 若只有一个姓名字段，\n            creator = {\"creatorType\": \"author\", \"lastName\": author.get(\"name\", \"\").strip()}\n        zotero_item[\"creators\"].append(creator)\n    \n    return zotero_item\n\n# ---------------------------\n# 函数：upload_items_to_zotero\n# 作用：将转换后的文献数据上传到 Zotero\n#\n# 上传时，将文献数据以 JSON 数组传递给接口。请求头中通过 \"Zotero-API-Key\" 传递 API Key。\n# ---------------------------\ndef upload_items_to_zotero(items):\n    headers = {\n        \"Zotero-API-Key\": API_KEY,\n        \"Content-Type\": \"application/json\",\n        \"Accept\": \"application/json\"\n    }\n    # 将每篇文献转换为 Zotero 格式\n    zotero_items = [convert_to_zotero_format(item) for item in items]\n    \n    # 这里假定接口支持批量上传文档。根据 Zotero API，不同接口可能要求的请求体结构略有不同，\n    # 有时需要逐条 POST。请根据实际文档修改。\n    payload = json.dumps(zotero_items, ensure_ascii=False)\n    \n    try:\n        response = requests.post(ZOTERO_UPLOAD_URL, headers=headers, data=payload)\n        if response.status_code in (200, 201):\n            print(\"文献上传成功！\")\n            try:\n                resp_json = response.json()\n                print(\"服务器返回的信息：\")\n                print(json.dumps(resp_json, ensure_ascii=False, indent=2))\n            except Exception as err:\n                print(\"解析服务器返回数据时出错：\", err)\n        else:\n            print(f\"上传失败，状态码: {response.status_code}\")\n            print(\"响应内容：\", response.text)\n    except Exception as e:\n        print(\"上传过程中出现错误：\", e)\n\n# ---------------------------\n# 主函数\n# ---------------------------\ndef main():\n    items = load_filtered_items(\"filtered_items.yaml\")\n    if items:\n        print(\"开始上传文献到 Zotero ...\")\n        upload_items_to_zotero(items)\n    else:\n        print(\"没有读取到可上传的文献。\")\n\nif __name__ == \"__main__\":\n    main()\n\n成功读取 2 篇筛选后的文献。\n开始上传文献到 Zotero ...\n文献上传成功！\n服务器返回的信息：\n{\n  \"successful\": {\n    \"0\": {\n      \"key\": \"I2QNRAH8\",\n      \"version\": 1092,\n      \"library\": {\n        \"type\": \"user\",\n        \"id\": 11510297,\n        \"name\": \"ZhangRui218\",\n        \"links\": {\n          \"alternate\": {\n            \"href\": \"https://www.zotero.org/zhangrui218\",\n            \"type\": \"text/html\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.zotero.org/users/11510297/items/I2QNRAH8\",\n          \"type\": \"application/json\"\n        },\n        \"alternate\": {\n          \"href\": \"https://www.zotero.org/zhangrui218/items/I2QNRAH8\",\n          \"type\": \"text/html\"\n        }\n      },\n      \"meta\": {\n        \"parsedDate\": \"2025\",\n        \"numChildren\": 0\n      },\n      \"data\": {\n        \"key\": \"I2QNRAH8\",\n        \"version\": 1092,\n        \"itemType\": \"journalArticle\",\n        \"title\": \"MicroDIG: 基于自监督学习的大规模微生物组纵向数据有向互作估计\",\n        \"creators\": [],\n        \"abstractNote\": \"\",\n        \"publicationTitle\": \"\",\n        \"volume\": \"\",\n        \"issue\": \"\",\n        \"pages\": \"\",\n        \"date\": \"2025\",\n        \"series\": \"\",\n        \"seriesTitle\": \"\",\n        \"seriesText\": \"\",\n        \"journalAbbreviation\": \"\",\n        \"language\": \"\",\n        \"DOI\": \"10.1360/ssm-2024-0293\",\n        \"ISSN\": \"\",\n        \"shortTitle\": \"\",\n        \"url\": \"\",\n        \"accessDate\": \"\",\n        \"archive\": \"\",\n        \"archiveLocation\": \"\",\n        \"libraryCatalog\": \"\",\n        \"callNumber\": \"\",\n        \"rights\": \"\",\n        \"extra\": \"\",\n        \"tags\": [],\n        \"collections\": [],\n        \"relations\": {},\n        \"dateAdded\": \"2025-03-20T14:23:59Z\",\n        \"dateModified\": \"2025-03-20T14:23:59Z\"\n      }\n    },\n    \"1\": {\n      \"key\": \"JG9RNPJQ\",\n      \"version\": 1092,\n      \"library\": {\n        \"type\": \"user\",\n        \"id\": 11510297,\n        \"name\": \"ZhangRui218\",\n        \"links\": {\n          \"alternate\": {\n            \"href\": \"https://www.zotero.org/zhangrui218\",\n            \"type\": \"text/html\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": {\n          \"href\": \"https://api.zotero.org/users/11510297/items/JG9RNPJQ\",\n          \"type\": \"application/json\"\n        },\n        \"alternate\": {\n          \"href\": \"https://www.zotero.org/zhangrui218/items/JG9RNPJQ\",\n          \"type\": \"text/html\"\n        }\n      },\n      \"meta\": {\n        \"parsedDate\": \"2019\",\n        \"numChildren\": 0\n      },\n      \"data\": {\n        \"key\": \"JG9RNPJQ\",\n        \"version\": 1092,\n        \"itemType\": \"journalArticle\",\n        \"title\": \"Application of “Omics” on the Study of Interaction between Endophyte and Plant\",\n        \"creators\": [],\n        \"abstractNote\": \"\",\n        \"publicationTitle\": \"\",\n        \"volume\": \"\",\n        \"issue\": \"\",\n        \"pages\": \"\",\n        \"date\": \"2019\",\n        \"series\": \"\",\n        \"seriesTitle\": \"\",\n        \"seriesText\": \"\",\n        \"journalAbbreviation\": \"\",\n        \"language\": \"\",\n        \"DOI\": \"10.12677/amb.2019.82007\",\n        \"ISSN\": \"\",\n        \"shortTitle\": \"\",\n        \"url\": \"\",\n        \"accessDate\": \"\",\n        \"archive\": \"\",\n        \"archiveLocation\": \"\",\n        \"libraryCatalog\": \"\",\n        \"callNumber\": \"\",\n        \"rights\": \"\",\n        \"extra\": \"\",\n        \"tags\": [],\n        \"collections\": [],\n        \"relations\": {},\n        \"dateAdded\": \"2025-03-20T14:23:59Z\",\n        \"dateModified\": \"2025-03-20T14:23:59Z\"\n      }\n    }\n  },\n  \"success\": {\n    \"0\": \"I2QNRAH8\",\n    \"1\": \"JG9RNPJQ\"\n  },\n  \"unchanged\": {},\n  \"failed\": {}\n}",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>第一步：使用Qwen检索相关文献</span>"
+    ]
+  }
+]
