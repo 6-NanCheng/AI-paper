@@ -1,0 +1,55 @@
+[
+  {
+    "itemType": "journalArticle",
+    "title": "MicroDIG: 基于自监督学习的大规模微生物组纵向数据有向互作估计",
+    "creators": [
+      {
+        "creatorType": "author",
+        "firstName": "Yaoyang",
+        "lastName": "Yu"
+      },
+      {
+        "creatorType": "author",
+        "firstName": "Wenhao",
+        "lastName": "Zhang"
+      },
+      {
+        "creatorType": "author",
+        "firstName": "Fengzhu",
+        "lastName": "Sun"
+      },
+      {
+        "creatorType": "author",
+        "firstName": "Ying",
+        "lastName": "Wang"
+      }
+    ],
+    "abstractNote": "无摘要",
+    "DOI": "10.1360/ssm-2024-0293",
+    "date": "2025",
+    "publicationTitle": "未知期刊",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "url": ""
+  },
+  {
+    "itemType": "journalArticle",
+    "title": "Application of “Omics” on the Study of Interaction between Endophyte and Plant",
+    "creators": [
+      {
+        "creatorType": "author",
+        "firstName": "小音",
+        "lastName": "高"
+      }
+    ],
+    "abstractNote": "无摘要",
+    "DOI": "10.12677/amb.2019.82007",
+    "date": "2019",
+    "publicationTitle": "未知期刊",
+    "volume": "",
+    "issue": "",
+    "pages": "",
+    "url": ""
+  }
+]
