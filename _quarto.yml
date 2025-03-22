@@ -19,6 +19,12 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
+    include-in-header: 
+      text: |
+        \usepackage{ctex}
+        \usepackage{amsthm,mathrsfs}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
 editor: visual
 
