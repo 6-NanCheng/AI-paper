@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "AI驱动Zotero智慧文献集成平台"
+  title: "文探：AI辅助文献筛选和批量解读台"
   author: "文探007：张睿、兰聪、黄俊豪"
   date: "2025/3/21"
   chapters:
