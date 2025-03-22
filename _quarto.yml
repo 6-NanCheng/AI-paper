@@ -2,7 +2,7 @@ project:
   type: book
 
 book:
-  title: "文探：AI辅助文献筛选和批量解读"
+  title: "AI驱动Zotero智慧文献集成平台"
   author: "文探007：张睿、兰聪、黄俊豪"
   date: "2025/3/21"
   chapters:
@@ -19,6 +19,11 @@ format:
       - brand
   pdf:
     documentclass: scrreprt
+    include-in-header: 
+      text: |
+        \usepackage{ctex}
+        \usepackage{amsthm,mathrsfs}
+        \usepackage{fvextra}
+        \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
 editor: visual
-
