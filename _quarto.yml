@@ -27,4 +27,3 @@ format:
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
 editor: visual
-
