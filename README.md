@@ -83,31 +83,31 @@ Zotero_BASE_URL Zotero API 的基础 URL。通常保持默认即可。
 
 `tasks.py` 中定义的自动化任务功能如下：
 
-- **setup_env**  
+- **setup-env**  
   检查 `environment.yaml` 中的 `name` 字段，判断当前是否位于目标 Conda 环境中。若已在目标环境则直接返回；若环境存在但未激活，则提示你运行 `conda activate <env_name>`；若不存在，则使用命令 `conda env create -f environment.yaml` 自动创建环境。
 
-- **run_paper**  
+- **run-paper**  
   运行 `paper.py` 脚本，处理与论文相关的操作。
 
-- **run_zotero_update**  
+- **run_zotero-update**  
   运行 `zotero_update.py` 脚本，用于更新 Zotero 数据或执行其它任务。
 
-- **run_pdf2md**  
+- **run-pdf2md**  
   运行 `pdf2md.py` 脚本，将 PDF 文件转换为 Markdown 格式，便于编辑和处理。
 
-- **run_add2yml**  
+- **run-add2yml**  
   运行 `add2yml.py` 脚本，用于对 YAML 文件内容进行添加或更新。
 
-- **run_quarto**  
+- **run-quarto**  
   执行 `quarto render` 命令，渲染项目文档（前提：确保已安装并配置 Quarto）。
 
 - **all**  
   按下列顺序依次执行：  
-  1. `setup_env`  
-  2. `run_zotero_update`  
-  3. `run_pdf2md`  
-  4. `run_add2yml`  
-  5. `run_quarto`  
+  1. `setup-env`  
+  2. `run-zotero-update`  
+  3. `run-pdf2md`  
+  4. `run-add2yml`  
+  5. `run-quarto`  
   执行完成后，终端会提示“所有任务执行完成！”。
 
 ---
@@ -127,11 +127,11 @@ Zotero_BASE_URL Zotero API 的基础 URL。通常保持默认即可。
    根据需要运行以下命令：  
    - 创建/检查环境：  
      ```bash
-     invoke setup_env
+     invoke setup-env
      ```
    - 运行处理论文脚本：  
      ```bash
-     invoke run_paper
+     invoke run-paper
      ```
    - 或一次性执行所有任务：  
      ```bash
