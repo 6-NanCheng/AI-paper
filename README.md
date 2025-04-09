@@ -18,7 +18,8 @@
 > **先决条件：安装 Invoke**  
 > 在终端中运行以下命令以安装：
 > ```bash
-> pip install invoke
+> pip install invoke pyyaml
+> 
 > ```
 
 ---
