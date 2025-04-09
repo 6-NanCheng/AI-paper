@@ -2,6 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-.env.yml
+env.yml
 
 /.quarto/
