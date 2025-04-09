@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-
 /.quarto/
+env.yml
+zotero_state.json

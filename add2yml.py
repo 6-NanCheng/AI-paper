@@ -51,4 +51,4 @@ for collection, md_files in collection_map.items():
 with open(YML_PATH, "w", encoding="utf-8") as f:
     yaml.dump(yml_data, f, allow_unicode=True, sort_keys=False)
 
-print("✅ _quarto.yml 文件已成功更新！")
+print(" _quarto.yml 文件已成功更新！")

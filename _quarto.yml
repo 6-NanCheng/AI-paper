@@ -6,9 +6,8 @@ book:
   date: 2025/3/21
   chapters:
   - index.qmd
-  - part: zanshi
-    chapters:
-    - md/3ZSLH2QS.md
+  
+    
 bibliography: references.bib
 format:
   html:
