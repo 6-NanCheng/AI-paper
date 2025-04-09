@@ -1,16 +1,22 @@
 import os
 import sys
 import yaml
+import re
+from subprocess import check_output
 from invoke import task
 
 def get_env_name(yaml_file="environment.yaml"):
+    """
+    通过 PyYAML 从 environment.yaml 文件中获取环境名称。
+    若文件不存在或未找到 'name' 键，则输出警告或退出程序。
+    """
     if os.path.exists(yaml_file):
         with open(yaml_file, "r", encoding="utf-8") as f:
             try:
                 env_data = yaml.safe_load(f)
                 env_name = env_data.get("name")
                 if env_name:
-                    return env_name
+                    return env_name.strip()
                 else:
                     print("Warning: environment.yaml 中未找到 'name' 键。")
             except Exception as e:
@@ -22,12 +28,30 @@ def get_env_name(yaml_file="environment.yaml"):
 
 def conda_env_exists(env_name):
     """
-    检查 conda 环境是否存在
+    检查 Conda 环境是否存在。
+
+    通过调用 "conda env list" 获取已注册的环境信息，
+    如果输出中显示环境名称为完整路径，则提取最后一部分进行匹配，
+    同时匹配不区分大小写。
     """
-    from subprocess import check_output
     try:
-        envs = check_output("conda env list", shell=True, encoding="utf-8")
-        return any(env_name in line for line in envs.splitlines())
+        envs_output = check_output("conda env list", shell=True, encoding="utf-8")
+        target = env_name.lower()
+        for line in envs_output.splitlines():
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            # 去除当前激活环境标记 '*'
+            line = line.replace("*", "").strip()
+            match = re.match(r"^(\S+)", line)
+            if match:
+                candidate = match.group(1).strip()
+                # 如果 candidate 是一个路径（包含路径分隔符），则提取 basename
+                if os.path.sep in candidate:
+                    candidate = os.path.basename(candidate)
+                if candidate.lower() == target:
+                    return True
+        return False
     except Exception as e:
         print("无法检查 conda 环境:", e)
         return False
@@ -35,7 +59,12 @@ def conda_env_exists(env_name):
 @task
 def setup_env(c):
     """
-    检查并创建或更新 Conda 环境（Windows-friendly）
+    检查并创建或更新 Conda 环境。
+
+      1. 从 environment.yaml 中读取目标环境名称；
+      2. 如果当前已处于目标环境中，则直接退出；
+      3. 如果目标环境已经存在，则提示用户手动激活；
+      4. 如果目标环境不存在，则使用 environment.yaml 自动创建环境。
     """
     yaml_file = "environment.yaml"
     env_name = get_env_name(yaml_file)
@@ -45,26 +74,38 @@ def setup_env(c):
 
     print(f"目标 Conda 环境: {env_name}")
 
-    # 判断是否已处于该环境中
+    # 检查当前是否已在目标环境中（忽略大小写）
     current_env = os.environ.get("CONDA_DEFAULT_ENV")
-    if current_env == env_name:
+    if current_env and current_env.lower() == env_name.lower():
         print("当前已在目标 Conda 环境中。")
         return
 
     if conda_env_exists(env_name):
-        print(f"已存在环境 '{env_name}'，尝试激活...")
-        print(f"请在命令行手动运行: conda activate {env_name}")
-        print("继续前将中断执行，激活环境后请重新运行本命令。")
+        print(f"环境 '{env_name}' 已存在。")
+        print(f"请在命令行中运行: conda activate {env_name}")
+        print("激活后再重新运行此命令。")
         sys.exit(0)
     else:
         print(f"环境 '{env_name}' 不存在，正在创建...")
         try:
-            c.run(f"conda env create -f {yaml_file}")
-            print(f"环境创建成功！请运行: conda activate {env_name}")
-            sys.exit(0)
+            result = c.run(f"conda env create -f {yaml_file}", warn=True)
+            if result.failed:
+                print("创建环境失败，请手动处理。")
+                sys.exit(1)
+            else:
+                print(f"环境创建成功！请运行: conda activate {env_name}")
+                sys.exit(0)
         except Exception as e:
             print("创建环境失败，请手动处理：", e)
             sys.exit(1)
+
+if __name__ == "__main__":
+    from invoke import Program
+    program = Program(namespace=globals())
+    program.run()
+
+
+
 @task
 def run_paper(c):
     print("正在运行 paper.py...")

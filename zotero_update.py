@@ -62,11 +62,11 @@ def fetch_current_state():
 
 # 4. 保存当前状态并打印实时状态（只打印关键结果）
 def save_current_state(state):
-    print("📁 当前实时状态：")
+    print(" 当前实时状态：")
     print(json.dumps(state, ensure_ascii=False, indent=4))
     with open("zotero_state.json", "w", encoding="utf-8") as f:
         json.dump(state, f, ensure_ascii=False, indent=4)
-    print("📁 当前状态已保存为 zotero_state.json")
+    print(" 当前状态已保存为 zotero_state.json")
 
 # 5. 对比更新：只统计并打印新增的 PDF 项
 def check_updates():
@@ -86,7 +86,7 @@ def check_updates():
             if item_key not in previous_state:
                 update_summary["新增"].append({item_key: {"collection": collection_name}})
                 
-    print("📌 更新信息统计：")
+    print(" 更新信息统计：")
     print(f"新增：{len(update_summary['新增'])}")
     if update_summary["新增"]:
         print("详细新增项目：")
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     update_summary = check_updates()
     with open("zotero_update_summary.json", "w", encoding="utf-8") as f:
         json.dump(update_summary, f, ensure_ascii=False, indent=4)
-    print("📁 更新信息已保存为 zotero_update_summary.json")
+    print(" 更新信息已保存为 zotero_update_summary.json")

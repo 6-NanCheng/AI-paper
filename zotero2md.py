@@ -24,10 +24,10 @@ client = OpenAI(
 )
 
 # ========== 步骤 3：定义 prompt 模板 ==========
-PROMPT_TEMPLATE = """请按照以下步骤对英文文献进行深入解读和分析，确保结果逻辑清晰、内容全面：
-# 文献解读报告 
+PROMPT_TEMPLATE = """请按照以下步骤对文献进行深入解读和分析，确保结果逻辑清晰、内容全面：
+# 文献主要内容概括 + 解读报告
 
-## 提取文章标题
+## 文章标题
 
 ### 基本信息提取
 
@@ -89,7 +89,7 @@ def pdf2md():
         for folder_name in entry:
             folder_path = os.path.join(Zotero_Storage, folder_name)
             if not os.path.exists(folder_path):
-                print(f"❌ 文件夹不存在：{folder_path}")
+                print(f" 文件夹不存在：{folder_path}")
                 continue
 
             # 查找 PDF 文件
@@ -99,11 +99,11 @@ def pdf2md():
                 if f.lower().endswith(".pdf")
             ]
             if not pdf_files:
-                print(f"❌ 未找到 PDF 文件：{folder_path}")
+                print(f" 未找到 PDF 文件：{folder_path}")
                 continue
 
             pdf_path = pdf_files[0]
-            print(f"\n📄 开始处理：{folder_name}")
+            print(f"\n 开始处理：{folder_name}")
 
             # 上传 PDF 文件
             try:
@@ -111,7 +111,7 @@ def pdf2md():
                 file_id = file_obj.id
                 print(f"📎 file-id：{file_id}")
             except Exception as e:
-                print(f"❌ 上传失败：{pdf_path}，错误：{e}")
+                print(f" 上传失败：{pdf_path}，错误：{e}")
                 continue
 
             # 发送解析请求
@@ -127,7 +127,7 @@ def pdf2md():
                 )
                 full_content = completion.choices[0].message.content
             except Exception as e:
-                print(f"❌ 解析失败：{folder_name}，错误：{e}")
+                print(f" 解析失败：{folder_name}，错误：{e}")
                 continue
 
             # 保存为 Markdown
@@ -135,7 +135,7 @@ def pdf2md():
             with open(md_path, "w", encoding="utf-8") as f:
                 f.write(full_content)
 
-            print(f"✅ 解析成功并保存为 Markdown：{md_path}")
+            print(f" 解析成功并保存为 Markdown：{md_path}")
 
 # ========== 启动 ==========
 if __name__ == "__main__":
