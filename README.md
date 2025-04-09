@@ -13,7 +13,7 @@
 # 项目说明文档
 
 本文档介绍了本项目的主要自动化任务，所有任务均通过 [Invoke](https://www.pyinvoke.org/) 工具管理。**请确保在运行前已安装 `invoke`。**
-```bash
+
 pip install invoke
 
 ## 任务说明
