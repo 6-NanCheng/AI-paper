@@ -89,8 +89,8 @@ Zotero_BASE_URL Zotero API 的基础 URL。通常保持默认即可。
 - **run-paper**  
   运行 `paper.py` 脚本，处理与论文相关的操作。
 
-- **run_zotero-update**  
-  运行 `zotero_update.py` 脚本，用于更新 Zotero 数据或执行其它任务。
+- **run-zotero-update**  
+  运行 `zotero-update.py` 脚本，用于更新 Zotero 数据或执行其它任务。
 
 - **run-pdf2md**  
   运行 `pdf2md.py` 脚本，将 PDF 文件转换为 Markdown 格式，便于编辑和处理。
