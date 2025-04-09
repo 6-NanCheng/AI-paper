@@ -1,29 +1,30 @@
 project:
   type: book
-
 book:
-  title: "AI驱动Zotero智慧文献集成"
-  author: "文探007：张睿、兰聪、黄俊豪"
-  date: "2025/3/21"
+  title: AI驱动Zotero智慧文献集成
+  author: 文探007：张睿、兰聪、黄俊豪
+  date: 2025/3/21
   chapters:
-    - index.qmd
-    - AI-Zotero.ipynb
-    - file-fe-fQhUAzZa0hHekgRXwxPZIAjx.md
-    - env.md
+  - index.qmd
+  - part: zanshi
+    chapters:
+    - md/3ZSLH2QS.md
 bibliography: references.bib
-
 format:
   html:
     theme:
-      - cosmo
-      - brand
+    - cosmo
+    - brand
   pdf:
     documentclass: scrreprt
-    include-in-header: 
-      text: |
-        \usepackage{ctex}
+    include-in-header:
+      text: '\usepackage{ctex}
+
         \usepackage{amsthm,mathrsfs}
+
         \usepackage{fvextra}
+
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
+        '
 editor: visual
