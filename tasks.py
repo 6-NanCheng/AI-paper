@@ -131,7 +131,7 @@ def run_quarto(c):
     print("正在执行 quarto render...")
     c.run("quarto render")
 
-@task(pre=[setup_env, run_zotero_update, run_pdf2md, run_add2yml, run_quarto])
+@task(pre=[run_zotero_update, run_pdf2md, run_add2yml, run_quarto])
 def all(c):
     print("所有任务执行完成！")
 
