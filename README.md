@@ -119,13 +119,14 @@ pip install invoke pyyaml
 
 - **作用**：调用 `quarto render` 命令，渲染生成的解读报告（前提是已正确安装 Quarto）。
 
-### 3.7 all
+### 3.7 all (一键部署)
 
 - **作用**：按以下顺序依次执行所有任务：
-  1. run-zotero-update  
-  2. run-pdf2md  
-  3. run-add2yml  
-  4. run-quarto  
+  1. setup-env
+  2. run-zotero-update  
+  3. run-pdf2md  
+  4. run-add2yml  
+  5. run-quarto  
 - 执行完成后终端显示“所有任务执行完成！”的提示。
 
 *任务执行命令格式统一为：*
