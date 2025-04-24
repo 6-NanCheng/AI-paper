@@ -6,6 +6,9 @@ book:
   date: 2025/3/21
   chapters:
   - index.qmd
+  - technical-sheet.qmd
+  - tutorial.qmd
+  - example.qmd
   
     
 bibliography: references.bib
@@ -26,4 +29,3 @@ format:
         \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 
         '
-editor: visual
