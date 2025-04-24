@@ -4,7 +4,15 @@
 
 ## 操作流程
 
+```conda
 
+# 首次运行时，请安装以下依赖：
+pip install invoke pyyaml
 
+conda activate ai
+
+invoke all
+
+```
 ## 结果展示
 
