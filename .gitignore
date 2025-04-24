@@ -5,3 +5,6 @@
 /.quarto/
 env.yml
 zotero_state.json
+.DS_Store
+_book
+*_files
